@@ -57,6 +57,9 @@ agente-trello-adk/
 │   ├── __init__.py
 │   ├── agent.py        # instruction + registro das ferramentas
 │   └── tools.py        # as funções conectadas ao Trello
+├── docs/               # prints da conversa e do quadro
+│   ├── conversa-adk-web.jpg
+│   └── quadro-trello.jpg
 ├── requirements.txt
 ├── .env.exemplo        # modelo das credenciais (sem valores reais)
 ├── .gitignore          # mantém o .env fora do Git
@@ -171,6 +174,25 @@ Depois, conversando no `adk web`:
 | `Lista só as concluídas` | chamou `listar_tarefas(status="Concluído")` |
 
 O card final no Trello: `Estudar Google ADK [Concluído] (vence em 25/11/2026)`.
+
+### Prints da conversa ao lado do quadro
+
+A conversa no `adk web`, com o painel de *Events* aberto mostrando **qual
+ferramenta foi chamada** em cada etapa:
+
+![Conversa no adk web com as chamadas de criar_tarefa e mover_tarefa](docs/conversa-adk-web.jpg)
+
+O mesmo resultado no quadro **DIO**, depois da conversa:
+
+![Quadro do Trello com 'toma café' em Em andamento e 'Estudar Google ADK' em Concluído](docs/quadro-trello.jpg)
+
+No primeiro print dá para ver dois momentos que valem destacar:
+
+- os eventos `criar_tarefa` e `mover_tarefa` com o ícone de **check**, ou
+  seja, a ferramenta executou de verdade;
+- o evento **#12**, em que o usuário escreveu *"tomar café"* e não havia card
+  com esse nome — o `try/except` devolveu **"Não achei nenhuma tarefa chamada
+  'tomar café'. Como você quer seguir?"** em vez de quebrar a conversa.
 
 ---
 
